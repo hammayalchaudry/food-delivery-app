@@ -51,12 +51,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white relative">
-      <Navbar cartCount={cartCount} onCheckout={handleCheckoutClick} />
       
-      <Hero />
-      <Dishes addToCart={addToCart} />
-      <About />
-      <Footer />
 
       {/* --- STEP 1: CUSTOMER INFORMATION & BILL DETAILS MODAL --- */}
       {step === 1 && (
