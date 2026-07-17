@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
-
 function App() {
   const [cartCount, setCartCount] = useState(0);
-  const [step, setStep] = useState(0); // 0: None, 1: Info/Checkout Form, 2: Receipt Page
+  const [step, setStep] = useState(0); // 0: Home/Menu, 1: Info/Checkout Form, 2: Receipt Page
 
   // Customer Information State
   const [customerInfo, setCustomerInfo] = useState({
@@ -50,8 +49,60 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white relative">
+    <div className="min-h-screen bg-zinc-50 relative antialiased text-zinc-900">
       
+      {/* --- STEP 0: HOME / FOOD MENU PAGE --- */}
+      {step === 0 && (
+        <div>
+          {/* Top Navbar / Header */}
+          <header className="bg-white border-b sticky top-0 z-50 px-4 py-4 shadow-sm">
+            <div className="max-w-4xl mx-auto flex justify-between items-center">
+              <h1 className="text-2xl font-black text-orange-600 tracking-tight">CravingBites 🍔</h1>
+              <button 
+                onClick={handleCheckoutClick}
+                className="bg-orange-600 text-white px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-orange-700 transition shadow-lg shadow-orange-600/20 cursor-pointer"
+              >
+                🛒 Cart <span className="bg-white text-orange-600 px-2 py-0.5 rounded-full text-xs font-black">{cartCount}</span>
+              </button>
+            </div>
+          </header>
+
+          {/* Main Food Card Section */}
+          <main className="max-w-4xl mx-auto px-4 py-12 text-center">
+            <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-2">Laziz Khana, Fast Delivery! ⚡</h2>
+            <p className="text-gray-500 text-sm mb-10">Apna pasandida burger select karein aur order confirm karein.</p>
+
+            {/* Food Item Card */}
+            <div className="max-w-sm mx-auto bg-white rounded-3xl border border-zinc-200 shadow-xl overflow-hidden p-6 text-left">
+              <div className="text-6xl text-center my-4">🍔</div>
+              <div className="flex justify-between items-center mb-2">
+                <h3 className="text-xl font-bold text-zinc-900">Special Cheese Burger</h3>
+                <span className="text-lg font-black text-orange-600">${itemPriceEstimate.toFixed(2)}</span>
+              </div>
+              <p className="text-gray-500 text-xs mb-6 leading-relaxed">
+                Freshly grilled patty with premium cheese, secret sauce, and toasted buns.
+              </p>
+              
+              <div className="space-y-3">
+                <button 
+                  onClick={addToCart}
+                  className="w-full bg-zinc-900 text-white py-3 rounded-xl font-bold text-sm hover:bg-zinc-800 transition cursor-pointer text-center"
+                >
+                  ➕ Add to Cart
+                </button>
+                {cartCount > 0 && (
+                  <button 
+                    onClick={handleCheckoutClick}
+                    className="w-full bg-orange-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-orange-700 transition cursor-pointer text-center shadow-md"
+                  >
+                    🚀 Checkout Now (${subTotal.toFixed(2)})
+                  </button>
+                )}
+              </div>
+            </div>
+          </main>
+        </div>
+      )}
 
       {/* --- STEP 1: CUSTOMER INFORMATION & BILL DETAILS MODAL --- */}
       {step === 1 && (
@@ -132,7 +183,6 @@ function App() {
                     <span>Total Bill:</span>
                     <span>${totalBill.toFixed(2)}</span>
                   </div>
-                  {/* Cancel / Add More Button Fully Fixed Here */}
                   <button 
                     type="button"
                     onClick={() => setStep(0)}
