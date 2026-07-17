@@ -22,7 +22,7 @@ function App() {
 
   const handleCheckoutClick = () => {
     if (cartCount === 0) {
-      alert("Aap ka cart khali hai! Pehle koi lazeez khana add karein. 🍔");
+      alert("Your cart is empty! Please add a food item first. 🍔");
     } else {
       setStep(1); // Open Information Form
     }
@@ -36,7 +36,7 @@ function App() {
   const handleConfirmOrder = (e) => {
     e.preventDefault();
     if (!customerInfo.name || !customerInfo.phone || !customerInfo.address) {
-      alert("Meherbani karke saari information darj karein!");
+      alert("Please fill out all the required information fields!");
       return;
     }
     setStep(2); // Move to Receipt Page
@@ -69,8 +69,8 @@ function App() {
 
           {/* Main Food Card Section */}
           <main className="max-w-4xl mx-auto px-4 py-12 text-center">
-            <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-2">Laziz Khana, Fast Delivery! ⚡</h2>
-            <p className="text-gray-500 text-sm mb-10">Apna pasandida burger select karein aur order confirm karein.</p>
+            <h2 className="text-3xl md:text-4xl font-black text-zinc-900 mb-2">Delicious Food, Fast Delivery! ⚡</h2>
+            <p className="text-gray-500 text-sm mb-10">Select your favorite burger and place your order.</p>
 
             {/* Food Item Card */}
             <div className="max-w-sm mx-auto bg-white rounded-3xl border border-zinc-200 shadow-xl overflow-hidden p-6 text-left">
